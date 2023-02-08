@@ -77,3 +77,21 @@ So although `renv` is activated, no packages are installed inside:
 Installing magrittr [2.0.3] ...
 	OK [linked cache]
 ```
+
+When I run `utils::install.packages()` explicitly, the installation looks better:
+
+```r
+> utils::install.packages("magrittr")
+Installing package into ‘/renv-mess/renv/library/R-4.2/x86_64-apple-darwin17.0’
+(as ‘lib’ is unspecified)
+trying URL 'https://cran.rstudio.com/bin/macosx/contrib/4.2/magrittr_2.0.3.tgz'
+Content type 'application/x-gzip' length 227506 bytes (222 KB)
+==================================================
+downloaded 222 KB
+
+
+The downloaded binary packages are in
+	/var/folders/c9/0x656y4x5l1csbkyc_kzc8h80000gq/T//RtmphaDMRH/downloaded_packages
+```
+
+Still `renv::snapshot()` does not add `magrittr` as a new dependency.
