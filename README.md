@@ -78,7 +78,9 @@ Installing magrittr [2.0.3] ...
 	OK [linked cache]
 ```
 
-When I run `utils::install.packages()` explicitly, the installation looks better:
+#### Atempt: Run `utils::install.packages()` explicitly.
+
+When I run `utils::install.packages()` explicitly (suggested [here](https://community.rstudio.com/t/cant-install-packages-with-renv/96696/7)), the installation looks better:
 
 ```r
 > utils::install.packages("magrittr")
@@ -95,3 +97,31 @@ The downloaded binary packages are in
 ```
 
 Still `renv::snapshot()` does not add `magrittr` as a new dependency.
+
+#### Attempt: Set `renv::settings$snapshot.type("all")`
+
+I set `renv::settings$snapshot.type("all")` (suggested [here](https://rstudio.github.io/renv/articles/faq.html#capturing-all-dependencies)).
+Now `renv::snapshot()` looks more promising:
+
+```r
+> renv::snapshot()
+The following package(s) will be updated in the lockfile:
+
+# CRAN ===============================
+- KernSmooth   [* -> 2.23-20]
+- MASS         [* -> 7.3-58.1]
+- Matrix       [* -> 1.5-1]
+- boot         [* -> 1.3-28]
+- class        [* -> 7.3-20]
+- cluster      [* -> 2.1.4]
+- codetools    [* -> 0.2-18]
+- foreign      [* -> 0.8-83]
+- lattice      [* -> 0.20-45]
+- magrittr     [* -> 2.0.3]
+- mgcv         [* -> 1.8-41]
+- nlme         [* -> 3.1-160]
+- nnet         [* -> 7.3-18]
+- rpart        [* -> 4.1.19]
+- spatial      [* -> 7.3-15]
+- survival     [* -> 3.4-0]
+```
