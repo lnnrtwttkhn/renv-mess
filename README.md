@@ -51,3 +51,29 @@ So far, I have only installed `magrittr`.
 
 Result: Nothing.
 `renv.lock` is not updated.
+
+#### Attempt 1: Check `renv::dependencies()`.
+
+As suggested [here](https://rstudio.github.io/renv/articles/faq.html#why-isnt-my-package-being-snapshotted-into-the-lockfile) I should check `renv::dependencies()` to see whether usages of my package are reported in the output:
+
+```r
+> renv::dependencies()
+Finding R package dependencies ... Done!
+                                   Source Package Require Version   Dev
+1 ~/renv-mess/renv.lock    renv                 FALSE
+```
+
+No `magrittr`.
+So apparently, something is wrong with the installation.
+
+### Packages are not installed properly.
+
+So although `renv` is activated, no packages are installed inside:
+
+```r
+> renv::activate()
+* Project '~/edu/renv-mess' loaded. [renv 0.16.0]
+> install.packages("magrittr")
+Installing magrittr [2.0.3] ...
+	OK [linked cache]
+```
